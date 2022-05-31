@@ -4,7 +4,7 @@ from jax.flatten_util import ravel_pytree
 from .utils import ravel_pytree_ as ravel_fn
 
 
-def make_mlp_fn():
+def make_nn_fn():
     """Returns a forward function for an MLP of given dimensions."""
 
     def forward(x):
@@ -41,7 +41,7 @@ def make_flattened_predict_fn(net, params_sample):
 
 def make_nn(key, x):
     # create NN
-    net_fn = make_mlp_fn()
+    net_fn = make_nn_fn()
     net = hk.transform_with_state(net_fn)
     params, _ = net.init(key, x)
     
